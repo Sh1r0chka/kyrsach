@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Добавить товар{% endblock %}
+{% block tab-name %}Добавить товар{% endblock %}
+{% block content %}
+    <h1>Добавить товар</h1>
+    <form method="post" class="add-form">
+        {% csrf_token%}
+        {{form.name}} <br>
+        {{form.type}} <br>
+        {{form.price}} <br>
+        <button type="submit">Добавить</button>
+        <span>{{error}}</span>
+    </form>
+{% endblock %}

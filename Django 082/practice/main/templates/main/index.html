@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block tab-name %}Главная{% endblock %}
+{% block content %}
+<h1>Каталог</h1>
+{% if positions %}
+    <form method="get" class="form-filter">
+        <div>
+        Название: {{ positions.form.name }}
+            Производитель: {{ positions.form.type }}
+        Цена: {{ positions.form.price }}
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+        </div>
+    </form>
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Производитель</th>
+        <th>Цена</th>
+        <th>Управление записями</th>
+    </tr>
+    {% for el in positions.qs %}
+    <tr>
+        <td>{{el.name}}</td>
+        <td>{{el.type}}</td>
+        <td>{{el.price}} р.</td>
+        <td>
+            <div class="produtcs__btns">
+                <a href="{% url 'delete' el.id %}">
+                    <button class="btn btn-danger">Удалить</button>
+                </a>
+                <a href="{% url 'update' el.id %}">
+                    <button class="btn btn-success">Редактировать</button>
+                </a>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>У нас нет позиций в каталоге</p>
+{%endif%}
+{% endblock %}

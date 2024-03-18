@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Вход в аккаунт{% endblock %}
+{% block tab-name %}Вход в аккаунт{% endblock %}
+{% block content %}
+    <h1>Вход в аккаунт</h1>
+    <form method="post" class="add-form">
+        {% csrf_token%}
+        {{form.login}} <br>
+        {{form.password}} <br>
+        <button type="submit">Войти</button>
+        <span>{{error}}</span>
+    </form>
+{% endblock %}
